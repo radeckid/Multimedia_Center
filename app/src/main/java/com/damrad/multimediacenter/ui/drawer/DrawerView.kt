@@ -11,8 +11,10 @@ import kotlin.math.abs
 
 class DrawerView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
-    var BRUSH_SIZE = 20
-    val DEFAULT_COLOR: Int = Color.RED
+    var BRUSH_SIZE = 20f
+    var DEFAULT_COLOR: Int = Color.RED
+    var strokeWidth = 0f
+    var currentColor = 0
     private val DEFAULT_BG_COLOR: Int = Color.WHITE
     private val TOUCH_TOLERANCE = 4f
     private var myX = 0f
@@ -20,9 +22,7 @@ class DrawerView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
     private var myPath: Path? = null
     private var paint: Paint? = null
     private var paths: ArrayList<MyBrush> = ArrayList()
-    private var currentColor = 0
     private var myBackgroundColor = DEFAULT_BG_COLOR
-    private var strokeWidth = 0
     private var emboss = false
     private var blur = false
     private var myEmboss: MaskFilter? = null
@@ -82,7 +82,7 @@ class DrawerView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         myCanvas?.drawColor(myBackgroundColor)
         for (myBrush in paths) {
             paint?.color = myBrush.color
-            paint?.strokeWidth = myBrush.strokeWidth.toFloat()
+            paint?.strokeWidth = myBrush.strokeWidth
             paint?.maskFilter = null
             if (myBrush.emboss) paint?.maskFilter = myEmboss else if (myBrush.blur) paint?.maskFilter = myBlur
             paint?.let { myCanvas?.drawPath(myBrush.path, it) }
