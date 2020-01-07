@@ -207,5 +207,12 @@ class MusicPlayer : Fragment() {
         }
         return fileList
     }
+
+    override fun onPause() {
+        super.onPause()
+        if (mediaPlayer.isPlaying) {
+            mediaPlayer.stop()
+        }
+    }
 }
 

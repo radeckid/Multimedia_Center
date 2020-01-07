@@ -12,20 +12,19 @@ import kotlin.math.abs
 class DrawerView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
     var BRUSH_SIZE = 20f
-    var DEFAULT_COLOR: Int = Color.RED
+    var DEFAULT_COLOR: Int = Color.BLACK
     var strokeWidth = 0f
     var currentColor = 0
+    var paint: Paint? = null
     private val DEFAULT_BG_COLOR: Int = Color.WHITE
     private val TOUCH_TOLERANCE = 4f
     private var myX = 0f
     private var myY = 0f
     private var myPath: Path? = null
-    private var paint: Paint? = null
     private var paths: ArrayList<MyBrush> = ArrayList()
     private var myBackgroundColor = DEFAULT_BG_COLOR
     private var emboss = false
     private var blur = false
-    private var myEmboss: MaskFilter? = null
     private var myBlur: MaskFilter? = null
     private var myBitmap: Bitmap? = null
     private var myCanvas: Canvas? = null
@@ -42,7 +41,6 @@ class DrawerView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         paint?.xfermode = null
         paint?.alpha = 0xff
 
-        myEmboss = EmbossMaskFilter(floatArrayOf(1f, 1f, 1f), 0.4f, 6f, 3.5f)
         myBlur = BlurMaskFilter(5f, BlurMaskFilter.Blur.NORMAL)
     }
 
@@ -53,15 +51,11 @@ class DrawerView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         myCanvas = Canvas(myBitmap!!)
         currentColor = DEFAULT_COLOR
         strokeWidth = BRUSH_SIZE
+        blur = true
     }
 
     fun normal() {
         emboss = false
-        blur = false
-    }
-
-    fun emboss() {
-        emboss = true
         blur = false
     }
 
@@ -84,7 +78,7 @@ class DrawerView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
             paint?.color = myBrush.color
             paint?.strokeWidth = myBrush.strokeWidth
             paint?.maskFilter = null
-            if (myBrush.emboss) paint?.maskFilter = myEmboss else if (myBrush.blur) paint?.maskFilter = myBlur
+            if (myBrush.blur) paint?.maskFilter = myBlur
             paint?.let { myCanvas?.drawPath(myBrush.path, it) }
         }
         myBitmap?.let { canvas.drawBitmap(it, 0f, 0f, myBitmapPaint) }

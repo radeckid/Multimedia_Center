@@ -1,12 +1,14 @@
 package com.damrad.multimediacenter.ui.drawer
 
+import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.damrad.multimediacenter.R
@@ -45,16 +47,22 @@ class Drawer : Fragment() {
         brush.setOnClickListener {
             myDrawerView.blur()
             myDrawerView.strokeWidth = 20f
+            myDrawerView.paint?.strokeJoin = Paint.Join.ROUND
+            myDrawerView.paint?.strokeCap = Paint.Cap.ROUND
         }
 
         pen.setOnClickListener {
             myDrawerView.normal()
-            myDrawerView.strokeWidth = 20f
+            myDrawerView.strokeWidth = 10f
+            myDrawerView.paint?.strokeJoin = Paint.Join.ROUND
+            myDrawerView.paint?.strokeCap = Paint.Cap.ROUND
         }
 
         roller.setOnClickListener {
             myDrawerView.normal()
             myDrawerView.strokeWidth = 50f
+            myDrawerView.paint?.strokeCap = Paint.Cap.SQUARE
+            myDrawerView.paint?.strokeJoin = Paint.Join.MITER
         }
 
         colorPalete.setOnClickListener {
@@ -66,6 +74,7 @@ class Drawer : Fragment() {
                 .density(12)
                 .setPositiveButton("Ok") { dialog, selectedColor, allColors ->
                     myDrawerView.currentColor = selectedColor
+                    ViewCompat.setBackgroundTintList(colorPalete, ColorStateList.valueOf(selectedColor))
                 }
                 .setNegativeButton("Cancel") { dialog, which -> }
                 .build()
