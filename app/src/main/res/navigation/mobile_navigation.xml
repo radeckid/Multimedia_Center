@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/navigation_camera"
-        android:name="com.damrad.multimediacenter.ui.camera.Camera"
+        android:name="com.damrad.multimediacenter.ui.camera.MyCamera"
         android:label="@string/camera_title"
         tools:layout="@layout/camera_fragment" />
 </navigation>

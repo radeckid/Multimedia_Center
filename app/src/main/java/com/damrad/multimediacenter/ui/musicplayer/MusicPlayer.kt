@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.damrad.multimediacenter.R
@@ -44,7 +45,6 @@ class MusicPlayer : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MusicPlayerViewModel::class.java)
-        // TODO: Use the ViewModel
 
         songsList = getPlayList(Environment.getExternalStorageDirectory().absolutePath)
 
