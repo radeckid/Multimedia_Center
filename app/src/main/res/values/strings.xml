@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Multimedia Center</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="music_player_title">Music Player</string>
+    <string name="web_title">Web</string>
+    <string name="please_wait">Proszę czekać…</string>
+    <string name="camera_title">Camera</string>
+    <string name="drawer_title">Drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="brush">Brush</string>
+    <string name="pen">Pen</string>
+    <string name="roller">Roller</string>
+    <string name="color">Color</string>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_web">
+
+    <fragment
+        android:id="@+id/navigation_music_player"
+        android:name="com.damrad.multimediacenter.ui.musicplayer.MusicPlayer"
+        android:label="@string/music_player_title"
+        tools:layout="@layout/music_player_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_web"
+        android:name="com.damrad.multimediacenter.ui.web.Web"
+        android:label="@string/web_title"
+        tools:layout="@layout/web_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_drawer"
+        android:name="com.damrad.multimediacenter.ui.drawer.Drawer"
+        android:label="@string/drawer_title"
+        tools:layout="@layout/drawer_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_camera"
+        android:name="com.damrad.multimediacenter.ui.camera.Camera"
+        android:label="@string/camera_title"
+        tools:layout="@layout/camera_fragment" />
+</navigation>
