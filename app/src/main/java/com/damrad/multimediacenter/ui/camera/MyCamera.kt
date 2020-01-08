@@ -138,13 +138,16 @@ class MyCamera : Fragment() {
                     timeText?.text = (5 - i).toString()
                 }
 
-                Thread.sleep(1000)
+                try {
+                    Thread.sleep(1000)
+                } catch (ex: InterruptedException) {
 
+                }
                 i++
             }
 
-            val messsage = finishHandler.obtainMessage(123)
-            messsage.sendToTarget()
+            val finishMesssage = finishHandler.obtainMessage(123)
+            finishMesssage.sendToTarget()
         })
 
         timer?.start()
@@ -153,7 +156,6 @@ class MyCamera : Fragment() {
 
     override fun onPause() {
         super.onPause()
-
         timer?.interrupt()
     }
 }
